@@ -1,0 +1,27 @@
+# System files
+.DS_Store
+
+# Python caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local virtual environments
+.venv/
+.venv_*/
+venv/
+env/
+
+# Local environment files
+.env
+.env.*
+
+# Project data, checkpoints, and generated outputs
+dataset/*
+!dataset/.gitkeep
+
+check/*
+!check/.gitkeep
+
+results/*
+!results/.gitkeep
