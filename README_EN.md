@@ -70,8 +70,6 @@ All datasets are remapped to a shared 5-class grading convention:
 └── requirements.txt
 ```
 
-> The `dataset/`, `check/`, and `results/` directories are tracked in Git via `.gitkeep` files; their contents are ignored.
-
 ---
 
 ## Installation
@@ -118,6 +116,7 @@ ZIP archives are kept in `dataset/_downloads/` before extraction. Checkpoints ar
 | Checkpoint | `checkpoint-best-IDRID.pth` | [Google Drive](https://drive.google.com/file/d/1b0grTwARX1cXnYnMB3ZJZES26aMkgkvZ/view) |
 
 ---
+Reference : [RETFound/BENCHMARK.md](https://github.com/rmaphoh/RETFound/blob/dbbddb89360a35ef264ee363a56054245b00c45b/BENCHMARK.md)
 
 ## Usage
 
@@ -197,7 +196,5 @@ The global matrix summary is available at `results/dr_matrix/summary_metrics.csv
 ---
 
 ## Reference
-
-If you use RETFound in your work, please cite:
 
 > Zhou, Y., et al. *A foundation model for generalizable disease detection from retinal images.* **Nature**, 2023. [doi:10.1038/s41586-023-06555-x](https://doi.org/10.1038/s41586-023-06555-x)
