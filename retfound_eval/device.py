@@ -8,8 +8,7 @@ import torch
 def choose_device(preferred: str = "auto") -> torch.device:
     """Choose a torch device.
 
-    Priority in auto mode: MPS, CUDA, CPU. This mirrors the original notebook and
-    is convenient on Apple Silicon machines.
+    Priority in auto mode: MPS, CUDA, CPU.
     """
 
     preferred = preferred.lower()
