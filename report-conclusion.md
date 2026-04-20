@@ -1,6 +1,6 @@
 # Rapport d'evaluation RETFound DR
 
-Chaque ligne correspond a un checkpoint fine-tune sur le dataset source, puis evalue sur le dataset cible.
+Chaque ligne correspond a un checkpoint fine-tune sur le dataset source, puis evalue sur le dataset cible **complet, fusion train, val et test**.
 
 | Source checkpoint | Dataset cible | N images | Accuracy | AUROC | F1 macro | Kappa | Composite |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -14,9 +14,32 @@ Chaque ligne correspond a un checkpoint fine-tune sur le dataset source, puis ev
 | MESSIDOR2 | IDRiD_data | 516 | 0.6105 | 0.8629 | 0.4507 | 0.4468 | 0.5868 |
 | MESSIDOR2 | MESSIDOR2 | 1744 | 0.7328 | 0.9051 | 0.6205 | 0.5073 | 0.6776 |
 
-## Meilleure validation externe
 
-- Source: `MESSIDOR2`; cible: `APTOS2019`; composite: `0.6190`; AUROC: `0.8227`.
+
+Chaque ligne correspond a un checkpoint fine-tune sur le dataset source, puis evalue sur le dataset cible avec **seulement test**.
+
+| Source checkpoint | Dataset cible | N images | Accuracy | AUROC | F1 macro | Kappa | Composite |
+|---|---|---:|---:|---:|---:|---:|---:|
+| APTOS2019 | APTOS2019 | 1100 | 0.8218 | 0.9447 | 0.6223 | 0.7237 | 0.7636 |
+| APTOS2019 | IDRiD_data | 103 | 0.4369 | 0.8057 | 0.3386 | 0.2505 | 0.4650 |
+| APTOS2019 | MESSIDOR2 | 526 | 0.5932 | 0.7255 | 0.3911 | 0.2381 | 0.4516 |
+| IDRiD_data | APTOS2019 | 1100 | 0.4427 | 0.7476 | 0.3200 | 0.2207 | 0.4295 |
+| IDRiD_data | IDRiD_data | 103 | 0.5146 | 0.8248 | 0.4075 | 0.3225 | 0.5182 |
+| IDRiD_data | MESSIDOR2 | 526 | 0.5247 | 0.8297 | 0.3218 | 0.2522 | 0.4679 |
+| MESSIDOR2 | APTOS2019 | 1100 | 0.6973 | 0.8184 | 0.4732 | 0.5394 | 0.6103 |
+| MESSIDOR2 | IDRiD_data | 103 | 0.5146 | 0.8081 | 0.3829 | 0.3146 | 0.5019 |
+| MESSIDOR2 | MESSIDOR2 | 526 | 0.6977 | 0.8827 | 0.5936 | 0.4447 | 0.6403 |
+
+## Comparaison avec résultat partagé
+|Dataset| AUC partagé | AUC obtenu |
+|---|---|---:|
+| APTOS2019| 0.943|0.945|
+| IDRiD|0.822|0.825|
+|MESSIDOR-2|0.884|0.883|
+
+On retrouve bien les résultats attendus.
+
+
 
 # Analyse des Performances de Généralisation des Checkpoints Fine-Tunés
 
@@ -104,25 +127,6 @@ Le modèle :
 
 ---
 
-## AUROC vs F1 : Un Signal Important
-
-Exemple :
-- MESSIDOR2 → IDRiD  
-  - **AUROC : 0.8629 (bon)**
-  - **F1 macro : 0.4507 (moyen)**
-
-Interprétation :
-- Le modèle **ordonne bien les probabilités**
-- Mais **convertit mal en décisions discrètes**
-
-### Causes probables :
-- mauvaise calibration
-- seuils non optimaux
-- déséquilibre des classes
-- décalage de domaine
-
----
-
 
 ## Synthèse Finale
 
@@ -134,8 +138,3 @@ Cependant :
   - au décalage de domaine
   - au déséquilibre des classes
 - la détection de la **DR légère est un point critique non résolu**
-
-Utilisable en **aide à la décision**, mais nécessite :
-- calibration
-- reformulation
-- validation clinique complémentaire
